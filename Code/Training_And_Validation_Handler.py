@@ -27,7 +27,6 @@ class TrainingAndValidationHandler:
         self.valid_Y = pd.DataFrame()
         
     def load_Train_Valid_Sets(self):        
-        #loadDatasets...
         train = pd.read_csv(self.absParentFolder + '/train.csv')
         validation = pd.read_csv(self.absParentFolder + '/validation.csv')
         self.train_X = train.loc[:,['lat_n', 'long_n', 'LONG_Trips_FromStation', 'SHORT_Trips_FromStation', 'ratioSL_FromStation', 'rider_age', 'gender_num', 'Customer', 'Dependent', 'Subscriber', 'day_of_week', 'hour_of_day']]
@@ -35,13 +34,15 @@ class TrainingAndValidationHandler:
         self.valid_X = validation.loc[:,['lat_n', 'long_n', 'LONG_Trips_FromStation', 'SHORT_Trips_FromStation', 'ratioSL_FromStation', 'rider_age', 'gender_num', 'Customer', 'Dependent', 'Subscriber', 'day_of_week', 'hour_of_day']]
         self.valid_Y = validation.loc[:,['GroundTruth']].values.ravel()
     
+    ###plot a heat map showing correlation between the input features...
     def showFeatureCorrelations(self):
         #Lets see the correlation between features...
         plt.figure()
         sns.heatmap(self.train_X.corr())
         ax = plt.gca()
         ax.set_title('Correlation between input features')
-        
+    
+    ###Not dependent on the target variable...
     def featureSelection_with_VarianceThreshold(self,th):
         #Using VarianceThreshold...
         print('Columns before feature selection:')
@@ -53,6 +54,7 @@ class TrainingAndValidationHandler:
         print('Selected features after feature selection with VarianceThreshold:')
         print(self.train_X.columns.values)
     
+    ###Dependent on the target variable...
     def featureSelection_with_Univariate_Statistical_Tests(self, numOfFeaturesToSelect):
         #Using VarianceThreshold...
         print('Columns before feature selection:')
@@ -62,7 +64,8 @@ class TrainingAndValidationHandler:
         self.valid_X = self.valid_X.iloc[:, sel.get_support()]
         print('Selected features after feature selection with Univariate Statistical Tests:')
         print(self.train_X.columns.values)
-        
+    
+    ###Provides accuracy in percentage, confusin matrix and the precision:recall:f1 measures...
     def reportPerformance(self, c):
         print(self.valid_X.info())
         predictions = c.predict(self.valid_X)
@@ -73,7 +76,8 @@ class TrainingAndValidationHandler:
         print(classification_report(self.valid_Y, predictions))
         predictions = c.predict(self.train_X)
         print('Training Accuracy: '+ str(accuracy_score(self.train_Y, predictions)))
-        
+    
+    ###use the trained classifier c to output the relative importance of different features used for learning the classification model...  
     def reportFeatureImportances(self, c):
         importances = c.feature_importances_
         std = np.std([tree.feature_importances_ for tree in c.estimators_], axis=0)

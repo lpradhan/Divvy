@@ -1,3 +1,4 @@
+#Expedia Divvy Challenge...
 #Script file to load functions needed to execute on rows of dataframes
 #Author: Ligaj Pradhan
 
@@ -21,6 +22,7 @@ def getDistanceInKmFromLatitudeAndLongitude(x):
     distance = R * c
     return distance
 
+###This function gets the ration of the total short and long trips
 def getShortByLongRatio(x):
     long_count = x['LONG']
     short_count = x['SHORT']

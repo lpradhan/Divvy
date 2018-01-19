@@ -14,12 +14,14 @@ class TestingHandler:
         self.absParentFolder = absParentFolder
         self.test_X = pd.DataFrame()
         self.test_Y = pd.DataFrame() 
-        
+    
+    ###load test.csv file produced by the 'DataPreProcessorAndExplorer' class
     def load_Test_Sets(self):        
         test = pd.read_csv(self.absParentFolder + '/test.csv')
         self.test_X = test.loc[:,['lat_n', 'long_n', 'LONG_Trips_FromStation', 'SHORT_Trips_FromStation', 'ratioSL_FromStation', 'rider_age', 'gender_num', 'Customer', 'Dependent', 'Subscriber', 'day_of_week', 'hour_of_day']]
         self.test_Y = test.loc[:,['GroundTruth']].values.ravel()
-        
+    
+    ###Provides accuracy in percentage, confusin matrix and the precision:recall:f1 measures...
     def reportPerformance(self, c):
         predictions = c.predict(self.test_X)
         print('Testing Accuracy: '+ str(accuracy_score(self.test_Y, predictions)*100) + ' %')
@@ -28,6 +30,7 @@ class TestingHandler:
         print(cm)
         print(classification_report(self.test_Y, predictions))
 
+    ###Test is performed in the whole test dataset
     def test_Classifier(self, featureSelected):
         if featureSelected:
             filename = self.absParentFolder + '/trained_model_with_feature_selection.sav'
@@ -41,6 +44,7 @@ class TestingHandler:
         else:
             print('Trained model not available...')
     
+    ###Test for single trip instance described in its parameters...
     def getTripCLassForATrip(self, fromStationId, rider_age, gender, usertype, day_of_week, hour_of_day, modelWithFeatureSelection):
         df_stations = pd.read_csv(self.absParentFolder + '/Station_Processed_Info.csv')
         vals = df_stations[df_stations['from_station_id']==fromStationId].loc[:,['LONG_Trips_FromStation','SHORT_Trips_FromStation','ratioSL_FromStation','lat_n','long_n',]].values.tolist()

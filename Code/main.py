@@ -57,7 +57,7 @@ def test_trained_Classifier(testFeatureSelectedModel):
     t = th.TestingHandler(absParentFolder)
     t.load_Test_Sets()
     t.test_Classifier(testFeatureSelectedModel)
-    #Testing in one trip instance...
+    #Testing with one trip instance...
     #t.getTripCLassForATrip(275,25,1,'Customer',2,20,True)
     
 def main():
