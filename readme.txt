@@ -1,24 +1,11 @@
 #Expedia Divvy Challenge...
 #Author: Ligaj Pradhan
 
-In this project a random forest classifier is trained to classify bike trips from divvy dataset into SHORT or LONG trips. Only thse features that are know before a trip is satrted is used or training the model. 
+In this project a random forest classifier is trained to classify bike trips from divvy dataset into SHORT or LONG trips. Only thse features that are know before a trip is satrted is used or training the model. Some of the packages you need to run the code are pandas, matplotlib, sklearn, seaborn and pickle.
 
-#CLASS DESCRIPTIONS:
+To execute simply run the Main.py file.
 
-__________________________________________________
-Expedia_Divvy_Feature_PreProcessor_N_Explorer.py 
-__________________________________________________
-	This file contains the 'DataPreProcessorAndExplorer' class. 'DataPreProcessorAndExplorer' is  responsible for preparing training, validaiton and test datasets. It also computes physical distance using the longitude and latitude features of stations (with getInterStationDistancesInKm function) and add LONG and SHORT groundtruth values to the dataset. This class also explores features and plots their relationships, which can be very helpful to draw insights about the problem under investigation and data.
 
-__________________________________________________
-Training_And_Validation_Handler.py
-__________________________________________________
-	This file contains the 'TrainingAndValidationHandler' class. Everything related to training and valdating is done from 'TrainingAndValidationHandler' class. It has functions to show correlations between features, perform feature selection, report the performance in the validation set and finally perform training using couple of different classifiers (like RandomForestClassifier, ExtraTreesClassifier, DecisionTreeClassifier, SVC, LinearSVC, MLPClassifier and GaussianNB). Depending upon the performace report on the validation set, we can tweak parameters of the classifiers and select differnt features from this class.
-
-__________________________________________________
-Testing_Handler.py
-__________________________________________________
-	This class contains the 'TestingHandler' class. Everything related to testing is done from 'TestingHandler' class. 'test_Classifier' function ca load the saved trained model, perform testing on the test dataset and report performance of the classifier on test dataset. 'getTripCLassForATrip' can also classify a single trip description into SHORT or LONG trip.
 
 __________________________________________________
 Main.py 
@@ -55,6 +42,29 @@ __________________________________________
 This function is responsiblefor testing of the saved trained model with the test dataset.
 It loads the saved model and gets te subset of selected features if boolean parameter 'featureSelected' is true before testing.
 Everything related to testing is done from 'TestingHandler' class. 
+
+
+
+
+#CLASS DESCRIPTIONS:
+
+__________________________________________________
+Expedia_Divvy_Feature_PreProcessor_N_Explorer.py 
+__________________________________________________
+	This file contains the 'DataPreProcessorAndExplorer' class. 'DataPreProcessorAndExplorer' is  responsible for preparing training, validaiton and test datasets. It also computes physical distance using the longitude and latitude features of stations (with getInterStationDistancesInKm function) and add LONG and SHORT groundtruth values to the dataset. This class also explores features and plots their relationships, which can be very helpful to draw insights about the problem under investigation and data.
+
+__________________________________________________
+Training_And_Validation_Handler.py
+__________________________________________________
+	This file contains the 'TrainingAndValidationHandler' class. Everything related to training and valdating is done from 'TrainingAndValidationHandler' class. It has functions to show correlations between features, perform feature selection, report the performance in the validation set and finally perform training using couple of different classifiers (like RandomForestClassifier, ExtraTreesClassifier, DecisionTreeClassifier, SVC, LinearSVC, MLPClassifier and GaussianNB). Depending upon the performace report on the validation set, we can tweak parameters of the classifiers and select differnt features from this class.
+
+__________________________________________________
+Testing_Handler.py
+__________________________________________________
+	This class contains the 'TestingHandler' class. Everything related to testing is done from 'TestingHandler' class. 'test_Classifier' function ca load the saved trained model, perform testing on the test dataset and report performance of the classifier on test dataset. 'getTripCLassForATrip' can also classify a single trip description into SHORT or LONG trip.
+
+__________________________________________________
+
 
 
 
