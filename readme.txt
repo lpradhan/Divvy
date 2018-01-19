@@ -23,7 +23,7 @@ __________________________________________________
 __________________________________________________
 Main.py 
 __________________________________________________
-This class is the main entry point. Execute this file to prepare te training, validation and test data and perform training, validation and testing. In its main function it runs the following three funcitons in sequence.
+This class is the main entry point. Execute this file to prepare the training, validation and test data and perform training, validation and testing. In its main function it runs the following three funcitons in sequence.
 1. prepareData(True) 
 2. train_N_Validate_Classifier(True,True) and 
 3. test_trained_Classifier(True)
