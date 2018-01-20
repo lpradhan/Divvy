@@ -18,7 +18,9 @@ This class is the main entry point. Execute this file to prepare the training, v
 Note: 
 1. Station_Proecssed_Info.csv, train.csv, validation.csv, test.csv are created in the first step i.e. prepareData(True)  
 2. trained_model_with_feature_selection.sav if rain_N_Validate_Classifier(True,True) or trained_model.csv if rain_N_Validate_Classifier(False,True) is created in the second step
-3. If you want to re-run please delete these files fromt the dataset folder.
+3. If you want to re-run steps 1 and 2 please delete the corresponding files created at each step from the dataset folder.
+4. If you have already created train, validation and test datasets, you can comment step 1 i.e. prepareData(True), to try step 2 i.e. training and validation repeatedly.
+5. Similarly, if step 1 and 2 are already completed and you only want to run testing on the test data, comment out the first two steps.
 _____________________________________
 prepareData(useOnlyFirstFile) : 
 _____________________________________
